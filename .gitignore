@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.pt
+*.done
+.buildvenv/
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+.DS_Store/
+forge_report.md

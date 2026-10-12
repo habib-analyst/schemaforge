@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schemaforge"
+version = "0.1.0"
+description = "Adversarial stress-testing for Pydantic schemas: fuzz LLM outputs before deployment"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Habib Ur Rehman"}]
+keywords = ["pydantic", "fuzzing", "llm", "structured-output", "validation", "agents"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = ["pydantic>=2.0"]
+
+[project.urls]
+Homepage = "https://github.com/habib-analyst/schemaforge"
+
+[tool.setuptools.packages.find]
+where = ["src"]
