@@ -1,0 +1,312 @@
+{
+ "kill_rate": 1.0,
+ "weaknesses_detected": 20,
+ "weaknesses_total": 20,
+ "false_positive_rate": 0.0,
+ "fp_flagged": 0,
+ "fp_total": 504,
+ "intent_violations": 7,
+ "repair_compiled": 0.9,
+ "repair_naive": 0.06666666666666667,
+ "repair_n": 60,
+ "elapsed_s": 0.2,
+ "cases": {
+  "user_profile": {
+   "candidates": 72,
+   "rejected": 24,
+   "misparsed": 10,
+   "clean": 38,
+   "weaknesses": [
+    {
+     "id": "W01",
+     "description": "age unbounded (intent 0..150)",
+     "detected": true,
+     "how": "invalid accepted via boundary (age): is_bad fired"
+    },
+    {
+     "id": "W02",
+     "description": "email has no format (intent: valid email)",
+     "detected": true,
+     "how": "invalid accepted via whitespace (email): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "product_review": {
+   "candidates": 56,
+   "rejected": 15,
+   "misparsed": 21,
+   "clean": 20,
+   "weaknesses": [
+    {
+     "id": "W03",
+     "description": "rating unbounded (intent 1..5)",
+     "detected": true,
+     "how": "invalid accepted via boundary (rating): is_bad fired"
+    },
+    {
+     "id": "W04",
+     "description": "title lax str coerces int->str silently",
+     "detected": true,
+     "how": "silent_misparse via type_confusion: silently misparsed: root.rating: TYPE CHANGED str -> int ('5' -> 5)"
+    }
+   ],
+   "strong_control": false
+  },
+  "payment_order": {
+   "candidates": 39,
+   "rejected": 17,
+   "misparsed": 4,
+   "clean": 18,
+   "weaknesses": [
+    {
+     "id": "W05",
+     "description": "non-discriminated union silently drops non-matching arm fields",
+     "detected": true,
+     "how": "silent_misparse via union_ambiguity: silently misparsed: root.payment.iban: field silently DROPPED"
+    }
+   ],
+   "strong_control": false
+  },
+  "search_query": {
+   "candidates": 55,
+   "rejected": 16,
+   "misparsed": 17,
+   "clean": 22,
+   "weaknesses": [
+    {
+     "id": "W06",
+     "description": "limit unbounded (intent 1..100)",
+     "detected": true,
+     "how": "invalid accepted via boundary (limit): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "email_message": {
+   "candidates": 86,
+   "rejected": 29,
+   "misparsed": 3,
+   "clean": 54,
+   "weaknesses": [
+    {
+     "id": "W07",
+     "description": "'to' has no email format",
+     "detected": true,
+     "how": "invalid accepted via whitespace (to): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "geo_point": {
+   "candidates": 19,
+   "rejected": 4,
+   "misparsed": 15,
+   "clean": 0,
+   "weaknesses": [
+    {
+     "id": "W08",
+     "description": "lat/lon unbounded (intent: -90..90 / -180..180)",
+     "detected": true,
+     "how": "silent_misparse via boundary: silently misparsed: root.lat: numeric type int -> float (1000000000000000000)"
+    }
+   ],
+   "strong_control": false
+  },
+  "task_spec": {
+   "candidates": 101,
+   "rejected": 79,
+   "misparsed": 4,
+   "clean": 18,
+   "weaknesses": [],
+   "strong_control": true
+  },
+  "nested_config": {
+   "candidates": 36,
+   "rejected": 15,
+   "misparsed": 3,
+   "clean": 18,
+   "weaknesses": [
+    {
+     "id": "W09",
+     "description": "extra='ignore' default silently drops hallucinated keys",
+     "detected": true,
+     "how": "silent_misparse via extra_field: silently misparsed: root.zzz_hallucinated: field silently DROPPED"
+    }
+   ],
+   "strong_control": false
+  },
+  "api_response": {
+   "candidates": 23,
+   "rejected": 9,
+   "misparsed": 10,
+   "clean": 4,
+   "weaknesses": [
+    {
+     "id": "W10",
+     "description": "items allows empty list (intent: non-empty)",
+     "detected": true,
+     "how": "invalid accepted via empty_container (items): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "strict_record": {
+   "candidates": 65,
+   "rejected": 45,
+   "misparsed": 0,
+   "clean": 20,
+   "weaknesses": [],
+   "strong_control": true
+  },
+  "money_transfer": {
+   "candidates": 67,
+   "rejected": 22,
+   "misparsed": 9,
+   "clean": 36,
+   "weaknesses": [
+    {
+     "id": "W11",
+     "description": "amount allows negatives (intent: positive)",
+     "detected": true,
+     "how": "silent_misparse via boundary: silently misparsed: root.amount: numeric type int -> float (1000000000000000000)"
+    },
+    {
+     "id": "W12",
+     "description": "amount lax float coerces numeric strings",
+     "detected": true,
+     "how": "silent_misparse via coercion_trap: silently misparsed: root.amount: TYPE CHANGED str -> float ('3.14' -> 3.14)"
+    }
+   ],
+   "strong_control": false
+  },
+  "tag_list": {
+   "candidates": 10,
+   "rejected": 5,
+   "misparsed": 3,
+   "clean": 2,
+   "weaknesses": [
+    {
+     "id": "W13",
+     "description": "tags unbounded (intent: <= 50)",
+     "detected": true,
+     "how": "invalid accepted via huge_container (tags): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "model_choice": {
+   "candidates": 12,
+   "rejected": 12,
+   "misparsed": 0,
+   "clean": 0,
+   "weaknesses": [],
+   "strong_control": true
+  },
+  "loose_record": {
+   "candidates": 57,
+   "rejected": 16,
+   "misparsed": 21,
+   "clean": 20,
+   "weaknesses": [
+    {
+     "id": "W14",
+     "description": "all fields lax: silent coercions (42->'42', '42'->42, 'true'->True)",
+     "detected": true,
+     "how": "silent_misparse via type_confusion: silently misparsed: root.count: TYPE CHANGED str -> int ('5' -> 5)"
+    }
+   ],
+   "strong_control": false
+  },
+  "address_form": {
+   "candidates": 87,
+   "rejected": 30,
+   "misparsed": 3,
+   "clean": 54,
+   "weaknesses": [
+    {
+     "id": "W15",
+     "description": "zip_code has no format (intent: US zip)",
+     "detected": true,
+     "how": "invalid accepted via whitespace (zip_code): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "survey_answer": {
+   "candidates": 45,
+   "rejected": 15,
+   "misparsed": 7,
+   "clean": 23,
+   "weaknesses": [
+    {
+     "id": "W16",
+     "description": "Union[int, str] ambiguous: '5' vs 5 validate differently",
+     "detected": true,
+     "how": "silent_misparse via type_confusion: silently misparsed: root.answer: numeric type float -> int (5.0)"
+    }
+   ],
+   "strong_control": false
+  },
+  "event_log": {
+   "candidates": 87,
+   "rejected": 30,
+   "misparsed": 3,
+   "clean": 54,
+   "weaknesses": [
+    {
+     "id": "W17",
+     "description": "timestamp typed as bare str; accepts 'yesterday'",
+     "detected": true,
+     "how": "invalid accepted via whitespace (timestamp): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "preferences": {
+   "candidates": 29,
+   "rejected": 4,
+   "misparsed": 25,
+   "clean": 0,
+   "weaknesses": [
+    {
+     "id": "W18",
+     "description": "lax bools coerce 'yes'->True silently",
+     "detected": true,
+     "how": "silent_misparse via coercion_trap: silently misparsed: root.newsletter: TYPE CHANGED str -> bool ('true' -> True)"
+    }
+   ],
+   "strong_control": false
+  },
+  "file_upload": {
+   "candidates": 72,
+   "rejected": 24,
+   "misparsed": 10,
+   "clean": 38,
+   "weaknesses": [
+    {
+     "id": "W19",
+     "description": "size_bytes unbounded (intent <= 10MB)",
+     "detected": true,
+     "how": "invalid accepted via boundary (size_bytes): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  },
+  "agent_action": {
+   "candidates": 36,
+   "rejected": 15,
+   "misparsed": 3,
+   "clean": 18,
+   "weaknesses": [
+    {
+     "id": "W20",
+     "description": "tool unrestricted (intent: known tool names)",
+     "detected": true,
+     "how": "invalid accepted via whitespace (tool): is_bad fired"
+    }
+   ],
+   "strong_control": false
+  }
+ }
+}

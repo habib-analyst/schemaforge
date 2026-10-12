@@ -1,0 +1,51 @@
+[user_profile] candidates=72 rejected=24 misparsed=10 clean=38
+  ✓ W01 DETECTED: invalid accepted via boundary (age): is_bad fired
+  ✓ W02 DETECTED: invalid accepted via whitespace (email): is_bad fired
+[product_review] candidates=56 rejected=15 misparsed=21 clean=20
+  ✓ W03 DETECTED: invalid accepted via boundary (rating): is_bad fired
+  ✓ W04 DETECTED: silent_misparse via type_confusion: silently misparsed: root.rating: TYPE CHANGED str -> int ('5' -> 5)
+[payment_order] candidates=39 rejected=17 misparsed=4 clean=18
+  ✓ W05 DETECTED: silent_misparse via union_ambiguity: silently misparsed: root.payment.iban: field silently DROPPED
+[search_query] candidates=55 rejected=16 misparsed=17 clean=22
+  ✓ W06 DETECTED: invalid accepted via boundary (limit): is_bad fired
+[email_message] candidates=86 rejected=29 misparsed=3 clean=54
+  ✓ W07 DETECTED: invalid accepted via whitespace (to): is_bad fired
+[geo_point] candidates=19 rejected=4 misparsed=15 clean=0
+  ✓ W08 DETECTED: silent_misparse via boundary: silently misparsed: root.lat: numeric type int -> float (1000000000000000000)
+[task_spec] candidates=101 rejected=79 misparsed=4 clean=18
+  [control] silent misparses (excl. allowlisted): 0 (must be 0)
+[nested_config] candidates=36 rejected=15 misparsed=3 clean=18
+  ✓ W09 DETECTED: silent_misparse via extra_field: silently misparsed: root.zzz_hallucinated: field silently DROPPED
+[api_response] candidates=23 rejected=9 misparsed=10 clean=4
+  ✓ W10 DETECTED: invalid accepted via empty_container (items): is_bad fired
+[strict_record] candidates=65 rejected=45 misparsed=0 clean=20
+  [control] silent misparses (excl. allowlisted): 0 (must be 0)
+[money_transfer] candidates=67 rejected=22 misparsed=9 clean=36
+  ✓ W11 DETECTED: silent_misparse via boundary: silently misparsed: root.amount: numeric type int -> float (1000000000000000000)
+  ✓ W12 DETECTED: silent_misparse via coercion_trap: silently misparsed: root.amount: TYPE CHANGED str -> float ('3.14' -> 3.14)
+[tag_list] candidates=10 rejected=5 misparsed=3 clean=2
+  ✓ W13 DETECTED: invalid accepted via huge_container (tags): is_bad fired
+[model_choice] candidates=12 rejected=12 misparsed=0 clean=0
+  [control] silent misparses (excl. allowlisted): 0 (must be 0)
+[loose_record] candidates=57 rejected=16 misparsed=21 clean=20
+  ✓ W14 DETECTED: silent_misparse via type_confusion: silently misparsed: root.count: TYPE CHANGED str -> int ('5' -> 5)
+[address_form] candidates=87 rejected=30 misparsed=3 clean=54
+  ✓ W15 DETECTED: invalid accepted via whitespace (zip_code): is_bad fired
+[survey_answer] candidates=45 rejected=15 misparsed=7 clean=23
+  ✓ W16 DETECTED: silent_misparse via type_confusion: silently misparsed: root.answer: numeric type float -> int (5.0)
+[event_log] candidates=87 rejected=30 misparsed=3 clean=54
+  ✓ W17 DETECTED: invalid accepted via whitespace (timestamp): is_bad fired
+[preferences] candidates=29 rejected=4 misparsed=25 clean=0
+  ✓ W18 DETECTED: silent_misparse via coercion_trap: silently misparsed: root.newsletter: TYPE CHANGED str -> bool ('true' -> Tr
+[file_upload] candidates=72 rejected=24 misparsed=10 clean=38
+  ✓ W19 DETECTED: invalid accepted via boundary (size_bytes): is_bad fired
+[agent_action] candidates=36 rejected=15 misparsed=3 clean=18
+  ✓ W20 DETECTED: invalid accepted via whitespace (tool): is_bad fired
+
+KILL RATE: 20/20 = 1.000 (gate: >= 0.80)
+FALSE POSITIVE RATE (classifier): 0/504 = 0.0000
+INTENT VIOLATIONS in random schema-valid inputs: 7/504 (these demonstrate the planted weaknesses, not FPs)
+
+REPAIR LOOP: 60 broken outputs, max_retries=3
+  compiled-prompt repair success: 54/60 = 0.900
+  naive-prompt repair success:    4/60 = 0.067
